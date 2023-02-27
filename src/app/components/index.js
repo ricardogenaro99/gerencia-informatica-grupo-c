@@ -1,3 +1,4 @@
+import CardEquipo from "./CardEquipo";
 import Header from "./Header";
 
-export { Header };
+export { Header, CardEquipo };
