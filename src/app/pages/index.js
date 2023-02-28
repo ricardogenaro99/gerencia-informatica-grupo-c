@@ -1,5 +1,5 @@
-import Documentos from "./Documentos";
+import Publicaciones from "./Publicaciones";
 import Equipo from "./Equipo";
 import Home from "./Home";
 
-export { Home, Documentos, Equipo };
+export { Home, Publicaciones, Equipo };

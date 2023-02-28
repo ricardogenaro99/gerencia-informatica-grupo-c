@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <nav
-      className="navbar navbar-expand-lg bg-dark navbar-dark fixed-top"
+      className="navbar navbar-expand-lg bg-dark navbar-dark fixed-top px-3"
       data-bs-theme="dark"
     >
       <div className="container-fluid">
@@ -41,8 +41,12 @@ function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/documentos" aria-current="page">
-                Documentos
+              <Link
+                className="nav-link"
+                to="/publicaciones"
+                aria-current="page"
+              >
+                Publicaciones
               </Link>
             </li>
           </ul>

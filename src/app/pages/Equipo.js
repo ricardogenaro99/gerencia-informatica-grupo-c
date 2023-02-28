@@ -1,6 +1,7 @@
 import React from "react";
 import { BsGithub, BsGlobe2, BsLinkedin } from "react-icons/bs";
 import { CardEquipo } from "../components";
+import { PageLayout } from "../layouts";
 
 function Equipo() {
   const equipo = [
@@ -9,7 +10,7 @@ function Equipo() {
       surnames: "Choquehuanca Palli",
       school: "Ingenieria de Sistemas",
       description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem ullam nulla quis. Ipsum totam inventore corrupti voluptatem, excepturi delectus dolore ipsa tempore aliquid nihil, facere eos nesciunt eaque earum et! Ut omnis numquam nobis nihil veritatis nesciunt itaque ipsum et ipsa aut? Accusantium illum ipsum repudiandae incidunt vitae cupiditate quasi dicta perspiciatis magni? Pariatur quisquam atque quam sequi aliquam. Explicabo voluptas eum tenetur expedita sequi quo provident laudantium cum, laborum voluptatibus fugit ad veniam ex molestiae inventore quisquam aliquam. Molestias corporis nihil, ullam, ad quam iure quidem unde veritatis commodi totam eaque tempore praesentium quae aliquam, iusto fugit ipsa deserunt delectus iste! Quam natus quia ducimus.",
+        "Estudiante de la carrera de Ingenieria de Sistemas en la Universidad Nacional Mayor de San Marcos. Con experiencia en el rubro de desarrollo de software, conocimiento en el manejo de bases de datos tanto relacionales como no relacionales y Soporte de TI. Actualmente trabajando en Chazki como lider del equipo de Soporte de TI y colaborando con distintos equipos tech (Grow, Integraciones, Devops, etc).",
       links: [
         {
           url: "https://ricardo-genaro-portfolio.vercel.app/",
@@ -34,11 +35,11 @@ function Equipo() {
   ];
 
   return (
-    <div>
+    <PageLayout title="Equipo">
       {equipo.map((e, i) => (
         <CardEquipo key={i} {...e} />
       ))}
-    </div>
+    </PageLayout>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import MainLayout from "./app/layouts/MainLayout";
-import { Documentos, Equipo, Home } from "./app/pages";
+import { MainLayout } from "./app/layouts";
+import { Publicaciones, Equipo, Home } from "./app/pages";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/equipo" element={<Equipo />} />
-        <Route path="/documentos" element={<Documentos />} />
+        <Route path="/publicaciones" element={<Publicaciones />} />
       </Routes>
     </MainLayout>
   );
