@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="text-white container-fluid row text-center bg-dark m-0 py-4">
+    <footer className="text-white container-fluid row text-center bg-dark m-0 py-4 pb-2">
       <div className="row">
         <div className="col-md-6 col-lg-3 mb-3">
           <h5>Enlaces internos</h5>
@@ -102,8 +102,10 @@ function Footer() {
       </div>
 
       <div className="d-flex flex-column flex-sm-row justify-content-between pt-2 my-2 border-top">
-        <p>© 2023 UNMSM - Grupo C. Todos los derechos reservados.</p>
-        <ul className="list-unstyled d-flex">
+        <p className="mb-0">
+          © 2023 UNMSM - Grupo C. Todos los derechos reservados.
+        </p>
+        <ul className="list-unstyled d-flex mb-0">
           <li className="ms-3">
             <a
               className="link"
