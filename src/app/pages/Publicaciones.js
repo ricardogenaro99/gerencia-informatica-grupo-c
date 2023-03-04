@@ -1,39 +1,44 @@
-import React from "react";
-import { CardPublicacion } from "../components";
+import React, { useEffect, useState } from "react";
+import { CardPublicacion, Loader } from "../components";
 import { PageLayout } from "../layouts";
+import { getPublications } from "../services/firebase";
 
 function Publicaciones() {
-  const publicaciones = [
-    {
-      id: "1",
-      type: "Tarea",
-      title: "ITIL 4",
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus, in maiores corporis commodi, exercitationem natus tenetur nihil alias veritatis expedita autem? Ad deserunt maxime animi quasi aspernatur, hic commodi amet.",
-      topic: "Semana 1",
-    },
-    {
-      id: "2",
-      type: "Tarea",
-      title: "ITIL 4",
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus, in maiores corporis commodi, exercitationem natus tenetur nihil alias veritatis expedita autem? Ad deserunt maxime animi quasi aspernatur, hic commodi amet.",
-      topic: "Semana 1",
-    },
-    {
-      id: "3",
-      type: "Tarea",
-      title: "ITIL 4",
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus, in maiores corporis commodi, exercitationem natus tenetur nihil alias veritatis expedita autem? Ad deserunt maxime animi quasi aspernatur, hic commodi amet.",
-      topic: "Semana 1",
-    },
-  ];
+  const [publications, setPublications] = useState();
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const res = await getPublications();
+        setPublications(res);
+      } catch (error) {
+        setPublications(null);
+      }
+    };
+
+    load();
+  }, []);
+
+  const renderContent = () => {
+    if (publications === undefined) return <Loader />;
+    if (publications === null)
+      return (
+        <div class="alert alert-danger" role="alert">
+          Ocurrio un error al cargar los servicios
+        </div>
+      );
+    if (publications.length === 0)
+      return (
+        <div class="alert alert-secondary" role="alert">
+          No hay publicaciones
+        </div>
+      );
+    return publications.map((e, i) => <CardPublicacion key={i} {...e} />);
+  };
+
   return (
     <PageLayout title="Publicaciones" classNameContent="row">
-      {publicaciones.map((e, i) => (
-        <CardPublicacion key={i} {...e} />
-      ))}
+      {renderContent()}
     </PageLayout>
   );
 }
