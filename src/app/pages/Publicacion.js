@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import styled from "styled-components";
 import { Loader } from "../components";
 import { getPublicationById } from "../services/firebase";
+import { parseHtmlToReact } from "../utils/generalFunctions";
+
+const ContentPublication = styled.div`
+  * {
+    font-size: inherit !important;
+    font-family: inherit !important;
+  }
+`;
 
 function Publicacion() {
   const { id } = useParams();
-
   const [data, setData] = useState();
+  const [content, setContent] = useState();
 
   useEffect(() => {
     const load = async () => {
       try {
         const res = await getPublicationById(id);
+        setContent(parseHtmlToReact(res?.content));
         setData(res);
       } catch (error) {}
     };
@@ -48,12 +58,25 @@ function Publicacion() {
         <span className="badge text-bg-success">{data?.type}</span>
       </div>
       <h3>{data?.title}</h3>
-      {data?.urlDocument && (
-        <a href={data?.urlDocument} target="_blank" rel="noreferrer">
+      {data?.urlResource && (
+        <a href={data?.urlResource} target="_blank" rel="noreferrer">
           Descargar recurso
         </a>
       )}
-      <div className="mt-4">{data?.description}</div>
+      {content ? (
+        <ContentPublication
+          className="mt-4 content-publication"
+          dangerouslySetInnerHTML={{ __html: data?.content }}
+        />
+      ) : (
+        <div className="mt-4 content-publication">{data?.description}</div>
+      )}
+      {/* <style>
+        .content-publication * {
+          font-size: 1.2rem;
+          font-family: initial
+        }
+      </style> */}
     </div>
   );
 }

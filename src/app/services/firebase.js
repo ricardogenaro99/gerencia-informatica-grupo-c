@@ -3,11 +3,10 @@ import { v4 as uuid } from "uuid";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {
-  collection,
-  doc,
+  addDoc, collection, doc,
   getDoc,
   getDocs,
-  getFirestore,
+  getFirestore
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
@@ -43,6 +42,11 @@ export const getPublicationById = async (id) => {
   const publicationRef = doc(db, "publications", id);
   const publicationSnapshot = await getDoc(publicationRef);
   return { ...publicationSnapshot.data(), id: publicationSnapshot.id };
+};
+
+export const savePublication = async (payload) => {
+  const publicationsCol = collection(db, "publications");
+  await addDoc(publicationsCol, payload);
 };
 
 export const uploadFile = async (file, dir = "") => {

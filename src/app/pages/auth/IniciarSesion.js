@@ -7,8 +7,8 @@ function IniciarSesion() {
   return (
     <AuthLayout
       title="Iniciar Sesión"
-      redirectOtherAuth="/auth/crear-cuenta"
-      redirectOtherAuthLabel="¿No tienes cuenta?, Registrate"
+      // redirectOtherAuth="/auth/crear-cuenta"
+      // redirectOtherAuthLabel="¿No tienes cuenta?, Registrate"
       submitCallback={login}
     />
   );

@@ -26,7 +26,7 @@ function AuthLayout({
     try {
       await submitCallback(form.email, form.password);
     } catch (e) {
-      setError(e.code);
+      setError(e.message);
     } finally {
       setTimeout(setError, 2000, "");
     }

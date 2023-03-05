@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   CardPublicacion,
   Loader,
-  ModalAgregarPublicacion,
+  ModalAgregarPublicacion
 } from "../components";
 import { useGlobal } from "../contexts/GlobalContext";
 import { PageLayout } from "../layouts";
@@ -12,16 +12,16 @@ function Publicaciones() {
   const { user } = useGlobal();
   const [publications, setPublications] = useState();
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const res = await getPublications();
-        setPublications(res);
-      } catch (error) {
-        setPublications(null);
-      }
-    };
+  const load = async () => {
+    try {
+      const res = await getPublications();
+      setPublications(res.filter((e) => !e.deleted));
+    } catch (error) {
+      setPublications(null);
+    }
+  };
 
+  useEffect(() => {
     load();
   }, []);
 
@@ -60,7 +60,7 @@ function Publicaciones() {
         ) : null
       }
     >
-      {user && <ModalAgregarPublicacion />}
+      {user && <ModalAgregarPublicacion reload={load} />}
       {renderContent()}
     </PageLayout>
   );

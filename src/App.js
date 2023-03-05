@@ -1,13 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import { MainLayout } from "./app/layouts";
 import {
-  CrearCuenta,
   Equipo,
   Home,
   IniciarSesion,
   NotFound,
   Publicacion,
-  Publicaciones,
+  Publicaciones
 } from "./app/pages";
 import { RestrictAuth } from "./app/routes/guards";
 
@@ -25,21 +24,21 @@ function App() {
               </RestrictAuth>
             }
           />
-          <Route
+          {/* <Route
             path="crear-cuenta"
             element={
               <RestrictAuth>
                 <CrearCuenta />
               </RestrictAuth>
             }
-          />
+          /> */}
         </Route>
         <Route path="equipo" element={<Equipo />} />
         <Route path="publicaciones">
           <Route index element={<Publicaciones />} />
           <Route path=":id" element={<Publicacion />} />
         </Route>
-        <Route path="*" element={<NotFound/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>
   );
