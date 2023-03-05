@@ -6,10 +6,10 @@ import {
 } from "../components";
 import { useGlobal } from "../contexts/GlobalContext";
 import { PageLayout } from "../layouts";
-import { getPublications } from "../services/firebase";
+import { deletePublication, getPublications } from "../services/firebase";
 
 function Publicaciones() {
-  const { user } = useGlobal();
+  const { user, setLoading } = useGlobal();
   const [publications, setPublications] = useState();
 
   const load = async () => {
@@ -25,6 +25,19 @@ function Publicaciones() {
     load();
   }, []);
 
+  const handleClickDelete = async (data) => {
+    try {
+      setLoading(true);
+      const tmp = { ...data };
+      delete tmp.id;
+      await deletePublication(data.id, tmp);
+      await load();
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const renderContent = () => {
     if (publications === undefined) return <Loader />;
     if (publications === null)
@@ -39,7 +52,13 @@ function Publicaciones() {
           No hay publicaciones
         </div>
       );
-    return publications.map((e, i) => <CardPublicacion key={i} {...e} />);
+    return publications.map((e, i) => (
+      <CardPublicacion
+        key={i}
+        {...e}
+        clickDelete={() => handleClickDelete(e)}
+      />
+    ));
   };
 
   return (

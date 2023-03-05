@@ -3,10 +3,13 @@ import { v4 as uuid } from "uuid";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {
-  addDoc, collection, doc,
+  addDoc,
+  collection,
+  doc,
   getDoc,
   getDocs,
-  getFirestore
+  getFirestore,
+  updateDoc
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
@@ -23,6 +26,7 @@ const firebaseConfig = {
   appId: "1:122722096532:web:6f274950899bc9cab0ab81",
 };
 
+const collectionName = "publications";
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
@@ -30,7 +34,7 @@ export const storage = getStorage(app);
 export const auth = getAuth(app);
 
 export const getPublications = async () => {
-  const publicationsCol = collection(db, "publications");
+  const publicationsCol = collection(db, collectionName);
   const publicationSnapshot = await getDocs(publicationsCol);
   const publicationList = publicationSnapshot.docs.map((doc) => {
     return { ...doc.data(), id: doc.id };
@@ -39,14 +43,22 @@ export const getPublications = async () => {
 };
 
 export const getPublicationById = async (id) => {
-  const publicationRef = doc(db, "publications", id);
+  const publicationRef = doc(db, collectionName, id);
   const publicationSnapshot = await getDoc(publicationRef);
-  return { ...publicationSnapshot.data(), id: publicationSnapshot.id };
+  return { ...publicationSnapshot.data() };
 };
 
 export const savePublication = async (payload) => {
-  const publicationsCol = collection(db, "publications");
+  const publicationsCol = collection(db, collectionName);
   await addDoc(publicationsCol, payload);
+};
+
+export const updatePublication = async (id, updatedFields) => {
+  await updateDoc(doc(db, collectionName, id), updatedFields);
+};
+
+export const deletePublication = async (id, updatedFields) => {
+  await updatePublication(id, { ...updatedFields, deleted: true });
 };
 
 export const uploadFile = async (file, dir = "") => {
