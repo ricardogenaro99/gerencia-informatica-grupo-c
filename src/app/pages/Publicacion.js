@@ -6,24 +6,13 @@ import { getPublicationById } from "../services/firebase";
 function Publicacion() {
   const { id } = useParams();
 
-  // // const [textDocument, setTextDocument] = useState("");
   const [data, setData] = useState();
-
-  // // const readDocument = async (document) => {
-  // //   const response = await fetch(document);
-  // //   const text = await response.text();
-  // //   return text;
-  // // };
 
   useEffect(() => {
     const load = async () => {
       try {
         const res = await getPublicationById(id);
         setData(res);
-        // // await getStorageByName(res.urlDocument)
-        // // const text = await readDocument(res.urlDocument);
-        // // console.log(text);
-        // // setTextDocument(text);
       } catch (error) {}
     };
 
@@ -34,7 +23,7 @@ function Publicacion() {
   if (data === undefined) return <Loader />;
   if (data === null)
     return (
-      <div class="alert alert-danger" role="alert">
+      <div className="alert alert-danger" role="alert">
         Ocurrio un error al cargar los servicios
       </div>
     );
@@ -42,14 +31,14 @@ function Publicacion() {
   return (
     <div>
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
-          <li class="breadcrumb-item" aria-current="page">
+          <li className="breadcrumb-item" aria-current="page">
             <Link to="/publicaciones">Publicaciones</Link>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">
+          <li className="breadcrumb-item active" aria-current="page">
             {data?.title}
           </li>
         </ol>

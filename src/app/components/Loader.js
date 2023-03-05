@@ -1,10 +1,16 @@
 import React from "react";
 
 function Loader() {
+  const size = "4rem";
+
   return (
-    <div class="d-flex justify-content-center">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+    <div className="d-flex justify-content-center">
+      <div
+        className="spinner-border text-dark"
+        style={{ width: size, height: size }}
+        role="status"
+      >
+        <span className="visually-hidden">Loading...</span>
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
+import { v4 as uuid } from "uuid";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import {
   collection,
   doc,
@@ -7,8 +9,7 @@ import {
   getDocs,
   getFirestore,
 } from "firebase/firestore";
-
-import { getStorage, getStream, ref } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -27,6 +28,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+export const auth = getAuth(app);
 
 export const getPublications = async () => {
   const publicationsCol = collection(db, "publications");
@@ -43,13 +45,8 @@ export const getPublicationById = async (id) => {
   return { ...publicationSnapshot.data(), id: publicationSnapshot.id };
 };
 
-export const getStorageByName = async (url) => {
-  const storageRef = ref(storage);
-  console.log(storageRef);
-  const storageSnapshot = getStream(storageRef);
-  console.log(
-    "🚀 ~ file: firebase.js:50 ~ getStorageByName ~ storageSnapshot:",
-    storageSnapshot
-  );
-  return storageSnapshot;
+export const uploadFile = async (file, dir = "") => {
+  const storageRef = ref(storage, `${dir}/${uuid()}`);
+  await uploadBytes(storageRef, file);
+  return getDownloadURL(storageRef);
 };

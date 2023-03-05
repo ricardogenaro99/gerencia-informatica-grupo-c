@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useGlobal } from "../contexts/GlobalContext";
 
 function Header() {
+  const { user, logout } = useGlobal();
   return (
     <nav
       className="navbar navbar-expand-lg bg-black navbar-dark fixed-top px-3"
@@ -37,6 +39,27 @@ function Header() {
               >
                 Publicaciones
               </Link>
+            </li>
+          </ul>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              {user ? (
+                <span
+                  className="nav-link cursor-pointer"
+                  onClick={logout}
+                  role="button"
+                >
+                  Cerrar Sesión
+                </span>
+              ) : (
+                <Link
+                  className="nav-link"
+                  to="/auth/iniciar-sesion"
+                  aria-current="page"
+                >
+                  Iniciar Sesión
+                </Link>
+              )}
             </li>
           </ul>
         </div>
