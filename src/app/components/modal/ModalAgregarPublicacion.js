@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useGlobal } from "../../contexts/GlobalContext";
 import { savePublication, uploadFile } from "../../services/firebase";
-import Input from "../Input";
-import InputFile from "../InputFile";
-import RichText from "../RichText";
+import Input from "../form/Input";
+import InputFile from "../form/InputFile";
+import RichText from "../form/RichText";
 
 const initForm = {
   content: "<p></p>\n",
