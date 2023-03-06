@@ -1,37 +1,79 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import {
   CardPublicacion,
   Loader,
-  ModalAgregarPublicacion
+  ModalAgregarPublicacion,
 } from "../components";
 import { useGlobal } from "../contexts/GlobalContext";
 import { PageLayout } from "../layouts";
-import { deletePublication, getPublications } from "../services/firebase";
+import {
+  deletePublication,
+  getPublications,
+  showHidePublication,
+} from "../services/firebase";
 
 function Publicaciones() {
   const { user, setLoading } = useGlobal();
   const [publications, setPublications] = useState();
 
-  const load = async () => {
+  const load = useCallback(async () => {
     try {
       const res = await getPublications();
-      setPublications(res.filter((e) => !e.deleted));
+      setPublications(user ? res : res.filter((e) => !e.deleted));
     } catch (error) {
       setPublications(null);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     load();
-  }, []);
+  }, [load]);
 
   const handleClickDelete = async (data) => {
+    try {
+      const resultDialog = await Swal.fire({
+        title: "¿Seguro que quieres eliminar esta publicación?",
+        confirmButtonText: "Eliminar",
+        confirmButtonColor: "#dc3545",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+      });
+
+      if (resultDialog.isDismissed) return;
+      if (!resultDialog.isConfirmed) return;
+
+      try {
+        setLoading(true);
+        await deletePublication(data.id);
+        await load();
+        Swal.fire({
+          title: "Publicación eliminada",
+          icon: "info",
+        });
+      } catch (error) {
+        Swal.fire({
+          title: error.message,
+          confirmButtonColor: "#0d6efd",
+          icon: "error",
+        });
+      } finally {
+        setLoading(false);
+      }
+    } catch (error) {}
+  };
+
+  const handleClickShowHide = async (data) => {
     try {
       setLoading(true);
       const tmp = { ...data };
       delete tmp.id;
-      await deletePublication(data.id, tmp);
+      await showHidePublication(data.id, tmp);
       await load();
+      Swal.fire({
+        title: !tmp.deleted ? "Publicación ocultada" : "Publicación publicada",
+        icon: "info",
+      });
     } catch (error) {
     } finally {
       setLoading(false);
@@ -57,6 +99,7 @@ function Publicaciones() {
         key={i}
         {...e}
         clickDelete={() => handleClickDelete(e)}
+        clickShowHide={() => handleClickShowHide(e)}
       />
     ));
   };

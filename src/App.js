@@ -6,7 +6,7 @@ import {
   IniciarSesion,
   NotFound,
   Publicacion,
-  Publicaciones
+  Publicaciones,
 } from "./app/pages";
 import { RestrictAuth } from "./app/routes/guards";
 

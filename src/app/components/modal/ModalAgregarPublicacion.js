@@ -77,7 +77,7 @@ function ModalAgregarPublicacion({ reload }) {
       aria-labelledby="modalAgregarPublicacionLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog" style={{maxWidth: '1000px'}}>
+      <div className="modal-dialog" style={{ maxWidth: "1000px" }}>
         <form className="modal-content" onSubmit={handleSubmit}>
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="modalAgregarPublicacionLabel">

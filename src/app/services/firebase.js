@@ -1,17 +1,18 @@
-import { v4 as uuid } from "uuid";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
   getFirestore,
-  updateDoc
+  updateDoc,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { generateUniqueId } from "../utils/generalFunctions";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -57,12 +58,20 @@ export const updatePublication = async (id, updatedFields) => {
   await updateDoc(doc(db, collectionName, id), updatedFields);
 };
 
-export const deletePublication = async (id, updatedFields) => {
-  await updatePublication(id, { ...updatedFields, deleted: true });
+export const deletePublication = async (id) => {
+  await deleteDoc(doc(db, collectionName, id));
+};
+
+export const showHidePublication = async (id, updatedFields) => {
+  await updatePublication(id, {
+    ...updatedFields,
+    deleted: !updatedFields.deleted,
+  });
 };
 
 export const uploadFile = async (file, dir = "") => {
-  const storageRef = ref(storage, `${dir}/${uuid()}`);
+  const uuid = generateUniqueId();
+  const storageRef = ref(storage, `${dir}/${uuid}-${file.name}`);
   await uploadBytes(storageRef, file);
   return getDownloadURL(storageRef);
 };

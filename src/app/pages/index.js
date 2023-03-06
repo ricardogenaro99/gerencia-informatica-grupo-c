@@ -6,4 +6,12 @@ import NotFound from "./NotFound";
 import Publicacion from "./Publicacion";
 import Publicaciones from "./Publicaciones";
 
-export { Home, Publicaciones, Publicacion, Equipo, IniciarSesion, CrearCuenta ,NotFound};
+export {
+  Home,
+  Publicaciones,
+  Publicacion,
+  Equipo,
+  IniciarSesion,
+  CrearCuenta,
+  NotFound,
+};

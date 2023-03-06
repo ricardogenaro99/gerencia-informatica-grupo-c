@@ -1,19 +1,43 @@
 import React from "react";
-import { BsFillTrashFill, BsPencilFill } from "react-icons/bs";
+import {
+  BsFillEyeFill,
+  BsFillEyeSlashFill,
+  BsFillTrashFill,
+} from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useGlobal } from "../../contexts/GlobalContext";
 // BsFillTrashFill
 // BsPencilFill
-function CardPublicacion({ id, type, title, description, topic, clickDelete }) {
+function CardPublicacion({
+  id,
+  type,
+  title,
+  description,
+  topic,
+  deleted,
+  clickDelete,
+  clickShowHide,
+}) {
   const { user } = useGlobal();
 
   return (
-    <div className="col-lg-4 px-2 py-3">
-      <div className="card h-100">
+    <div className={`col-lg-4 px-2 py-3`}>
+      <div
+        className={`card h-100  ${deleted ? "border-danger text-danger" : ""}`}
+      >
         <div className="card-header text-center">{type}</div>
-        <div className="card-body d-flex flex-column">
+        <div className="card-body d-flex flex-column ">
           <h5 className="card-title">{title}</h5>
-          <p className="card-text">{description}</p>
+          <p
+            className="card-text overflow-hidden h-100"
+            style={{
+              maxHeight: "400px",
+              WebkitMaskImage:
+                "-webkit-gradient(linear, 100% 70%, 100% 100%, from(rgb(0, 0, 0)), to(rgba(0, 0, 0, 0)))",
+            }}
+          >
+            {description}
+          </p>
           <div className="mt-auto w-100 d-flex justify-content-between flex-wrap gap-3">
             <Link
               to={id}
@@ -31,9 +55,9 @@ function CardPublicacion({ id, type, title, description, topic, clickDelete }) {
                 </button>
                 <button
                   className="btn btn-secondary flex-fill flex-sm-grow-0"
-                  disabled
+                  onClick={clickShowHide}
                 >
-                  <BsPencilFill />
+                  {deleted ? <BsFillEyeFill /> : <BsFillEyeSlashFill />}
                 </button>
               </div>
             )}

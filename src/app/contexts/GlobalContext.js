@@ -3,7 +3,7 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
 } from "firebase/auth";
 import {
   createContext,
@@ -11,7 +11,7 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState
+  useState,
 } from "react";
 import { ModalLoader } from "../components";
 import { auth } from "../services/firebase";
