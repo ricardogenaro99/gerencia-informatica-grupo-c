@@ -10,6 +10,11 @@ const ContentPublication = styled.div`
     font-size: inherit !important;
     font-family: inherit !important;
   }
+
+  img {
+    width: 100% !important;
+    object-fit: cover !important;
+  }
 `;
 
 function Publicacion() {
@@ -71,12 +76,6 @@ function Publicacion() {
       ) : (
         <div className="mt-4 content-publication">{data?.description}</div>
       )}
-      {/* <style>
-        .content-publication * {
-          font-size: 1.2rem;
-          font-family: initial
-        }
-      </style> */}
     </div>
   );
 }
