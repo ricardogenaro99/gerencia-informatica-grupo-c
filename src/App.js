@@ -6,6 +6,7 @@ import {
   IniciarSesion,
   NotFound,
   Publicacion,
+  PublicacionEdit,
   Publicaciones,
 } from "./app/pages";
 import { RestrictAuth } from "./app/routes/guards";
@@ -37,6 +38,9 @@ function App() {
         <Route path="publicaciones">
           <Route index element={<Publicaciones />} />
           <Route path=":id" element={<Publicacion />} />
+          <Route path="edit">
+            <Route path=":id" element={<PublicacionEdit />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

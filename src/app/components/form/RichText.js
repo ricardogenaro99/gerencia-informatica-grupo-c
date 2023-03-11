@@ -5,7 +5,12 @@ import { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-const RichText = ({ name, onChange, initialValue = "<p></p>\n" }) => {
+const RichText = ({
+  name,
+  onChange,
+  initialValue = "<p></p>\n",
+  initialValueEdit,
+}) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   useEffect(() => {
@@ -19,6 +24,18 @@ const RichText = ({ name, onChange, initialValue = "<p></p>\n" }) => {
       setEditorState(res);
     }
   }, [initialValue]);
+
+  useEffect(() => {
+    if (initialValueEdit) {
+      const valueHtml = htmlToDraft(initialValueEdit);
+      const valueContentState = ContentState.createFromBlockArray(
+        valueHtml.contentBlocks,
+        valueHtml.entityMap
+      );
+      const res = EditorState.createWithContent(valueContentState);
+      setEditorState(res);
+    }
+  }, [initialValueEdit]);
 
   useEffect(() => {
     const valueHtml = draftToHtml(

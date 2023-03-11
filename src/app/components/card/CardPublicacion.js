@@ -3,10 +3,10 @@ import {
   BsFillEyeFill,
   BsFillEyeSlashFill,
   BsFillTrashFill,
+  BsPencilFill,
 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useGlobal } from "../../contexts/GlobalContext";
-// BsFillTrashFill
 // BsPencilFill
 function CardPublicacion({
   id,
@@ -59,6 +59,12 @@ function CardPublicacion({
                 >
                   {deleted ? <BsFillEyeFill /> : <BsFillEyeSlashFill />}
                 </button>
+                <Link
+                  className="btn btn-success flex-fill flex-sm-grow-0"
+                  to={`/publicaciones/edit/${id}`}
+                >
+                  <BsPencilFill />
+                </Link>
               </div>
             )}
           </div>
