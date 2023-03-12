@@ -5,10 +5,16 @@ import { Loader } from "../components";
 import { getPublicationById } from "../services/firebase";
 import { parseHtmlToReact } from "../utils/generalFunctions";
 
+const Container = styled.div`
+max-width: 750px; 
+margin: 0 auto;
+`
+
 const ContentPublication = styled.div`
   * {
     font-size: inherit !important;
     font-family: inherit !important;
+    text-align: justify !important;
   }
 
   img {
@@ -44,7 +50,7 @@ function Publicacion() {
     );
 
   return (
-    <div>
+    <Container>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
@@ -76,7 +82,7 @@ function Publicacion() {
       ) : (
         <div className="mt-4 content-publication">{data?.description}</div>
       )}
-    </div>
+    </Container>
   );
 }
 

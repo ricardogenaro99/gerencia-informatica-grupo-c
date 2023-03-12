@@ -11,7 +11,7 @@ function Equipo() {
       surnames: "Bellido Suica",
       school: "Ingenieria de Sistemas",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "Soy un estudiante de ingeniería de sistemas de la Universidad Nacional Mayor de San Marcos. Estoy interesado en aplicar la tecnología para resolver problemas empresariales y sociales. Me especializo en programación, gestión de bases de datos, redes de computadoras, inteligencia artificial y seguridad informática.",
       links: [
         {
           url: "https://github.com/JosephJBS",
@@ -54,13 +54,19 @@ function Equipo() {
       surnames: "Ñiquen Velasquez",
       school: "Ingenieria de Sistemas",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "Soy un estudiante de ingeniería de sistemas de la Universidad Nacional Mayor de San Marcos. Estoy interesado en aplicar la tecnología para resolver problemas empresariales y sociales. Me especializo en programación, gestión de bases de datos, redes de computadoras, inteligencia artificial y seguridad informática.",
       links: [
         {
           url: "https://github.com/Antony13558",
           icon: <BsGithub />,
           color: "btn-dark",
           label: "Github",
+        },
+        {
+          url: "https://www.linkedin.com/in/max-niquen-velasquez-7a9086229/",
+          icon: <BsLinkedin />,
+          color: "btn-primary",
+          label: "Linkedin",
         },
       ],
     },
@@ -69,13 +75,19 @@ function Equipo() {
       surnames: "Rubina Saldaña",
       school: "Ingenieria de Sistemas",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "Analista Programador formado en UNMSM con experiencia en el desarrollo de aplicativos web y móvil.Analista Programador formado en UNMSM con experiencia en el desarrollo de aplicativos web y móvil.",
       links: [
         {
           url: "https://github.com/EugenioRS95",
           icon: <BsGithub />,
           color: "btn-dark",
           label: "Github",
+        },
+        {
+          url: "https://www.linkedin.com/in/jorge-rubina-saldana-aa423b45/",
+          icon: <BsLinkedin />,
+          color: "btn-primary",
+          label: "Linkedin",
         },
       ],
     },
@@ -84,13 +96,19 @@ function Equipo() {
       surnames: "Argenis David",
       school: "Ingenieria de Sistemas",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "Soy un estudiante de ingeniería de sistemas de la Universidad Nacional Mayor de San Marcos. Estoy interesado en aplicar la tecnología para resolver problemas empresariales y sociales. Me especializo en programación, gestión de bases de datos, redes de computadoras, inteligencia artificial y seguridad informática.",
       links: [
         {
           url: "https://github.com/argenis-uceda-malca",
           icon: <BsGithub />,
           color: "btn-dark",
           label: "Github",
+        },
+        {
+          url: "https://www.linkedin.com/in/argenis-uceda-malca-214762218/",
+          icon: <BsLinkedin />,
+          color: "btn-primary",
+          label: "Linkedin",
         },
       ],
     },
